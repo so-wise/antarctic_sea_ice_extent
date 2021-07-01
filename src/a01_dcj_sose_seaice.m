@@ -87,6 +87,6 @@ xlabel('Day of year');
 ylabel('Sea ice area (millions of square kilometres)');
 title('Weddell Sea');
 set(gca,'xgrid','on','ygrid','on');
-saveas(gcf,'weddell_sea_ice_bsose.pdf','pdf');
+saveas(gcf,'weddell_sea_ice_bsose.eps','epsc2');
 
 
