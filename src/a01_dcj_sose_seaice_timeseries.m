@@ -100,6 +100,7 @@ set(gca, 'fontsize',18,...
          'xticklabels',xtlabels);
 title('Sea ice area (10^6 km^2), Weddell Sea');
 set(gca,'xgrid','on','ygrid','on');
+set(gcf,'renderer','painters');
 saveas(gcf,'../reports/figures/bsose/weddell_sea_ice_bsose.eps','epsc2');
 
 
