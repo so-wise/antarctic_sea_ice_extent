@@ -54,6 +54,7 @@ SIarea_ws_total = squeeze(nansum(squeeze(nansum(rA_weddell.*SIarea_weddell))));
 t = datetime('2012-12-01 00:00:00') + seconds(time_in_sec);
 DOY = day(t,'dayofyear');
 year = t.Year;
+months = t.Month;
 
 %% extract individual years
 % 2013
@@ -71,22 +72,34 @@ SIarea_2016 = SIarea_ws_total(year==2016);
 % 2017
 doy_2017 = DOY(year==2017);
 SIarea_2017 = SIarea_ws_total(year==2017);
+% representative year
+doy = doy_2013;
+
+% date stuff
+dayspermonth = [0 31 28 31 30 31 30 31 31 30 31 30 31];
+xt(1) = 1;
+for i=2:12
+  xt(i) = xt(i-1) + dayspermonth(i);
+end
+xtlabels={'Jan','Feb','Mar','Apr','May','Jun',...
+          'Jul','Aug','Sep','Oct','Nov','Dec'};
 
 %% Initial plot
 lw = 2.0; 
 figure('color','w','position',[36 122 1099 645])
 hold on
-plot(doy_2013, SIarea_2013, 'linewidth',lw)
-plot(doy_2014, SIarea_2014, 'linewidth',lw)
-plot(doy_2015, SIarea_2015, 'linewidth',lw)
-plot(doy_2016, SIarea_2016, 'linewidth',lw)
-plot(doy_2017, SIarea_2017, 'linewidth',lw)
-legend('2013','2014','2015','2016','2017');
-set(gca, 'fontsize',18);
-xlabel('Day of year');
-ylabel('Sea ice area (millions of square kilometres)');
-title('Weddell Sea');
+plot(doy, SIarea_2013, 'linewidth',3.0,'linestyle','-')
+plot(doy, SIarea_2014, 'linewidth',lw,'linestyle',':')
+plot(doy, SIarea_2015, 'linewidth',lw,'linestyle',':')
+plot(doy, SIarea_2016(1:365), 'linewidth',lw,'linestyle',':')
+plot(doy, SIarea_2017, 'linewidth',3.0,'linestyle','-')
+legend('2013','2014','2015','2016','2017','location','northwest');
+set(gca, 'fontsize',18,...
+         'xlim',[1 365],...
+         'xtick',xt,...
+         'xticklabels',xtlabels);
+title('Sea ice area (10^6 km^2), Weddell Sea');
 set(gca,'xgrid','on','ygrid','on');
-saveas(gcf,'weddell_sea_ice_bsose.eps','epsc2');
+saveas(gcf,'../reports/figures/bsose/weddell_sea_ice_bsose.eps','epsc2');
 
 
