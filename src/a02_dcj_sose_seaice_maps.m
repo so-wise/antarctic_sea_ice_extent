@@ -77,14 +77,13 @@ for nm=1:12
   colormap(cividis);
   disp([monthName{myIndex}(1:3) ' ' num2str(years(myIndex))])
   m_text(-25,-77,[monthName{myIndex}(1:3) ' ' num2str(years(myIndex))],'fontsize',18);
-  saveas(gcf,['bsose_seaice_' num2str(years(myIndex)) '-' sprintf('%02d',months(myIndex)) '.eps'],'epsc2'); 
+  saveas(gcf,['../reports/figures/bsose/bsose_seaice_' num2str(years(myIndex)) ...
+              '-' sprintf('%02d',months(myIndex)) '.eps'],'epsc2'); 
 end
 
 % all months for 2016
-myYear = 2016;
-iYear = locate(years,myYear)+1;
 for nm=1:12
-  myIndex = iYear+nm-1;
+  myIndex = 37+nm-1;
   figure('color','w','visible','off');
   m_proj('miller','long',[x0 x1]-360,'lat',[-78 y1]);
   m_pcolor(x_ws-360, y_ws, SIarea_weddell(:,:,myIndex));
@@ -96,9 +95,9 @@ for nm=1:12
          'yticklabels',[],...
          'xaxislocation','bottom');
   colormap(cividis);
-  disp([monthName{myIndex}(1:3) ' ' num2str(years(myIndex))])
-  m_text(-25,-77,[monthName{myIndex}(1:3) ' ' num2str(years(myIndex))],'fontsize',18);
-  saveas(gcf,['../reports/figures/bsose/' 'bsose_seaice_' num2str(years(myIndex)) ...
+  disp([monthName{myIndex}(1:3) ' 2016' ])
+  m_text(-25,-77,[monthName{myIndex}(1:3) ' 2016'],'fontsize',18);
+  saveas(gcf,['../reports/figures/bsose/' 'bsose_seaice_2016' ...
               '-' sprintf('%02d',months(myIndex)) '.eps'],'epsc2'); 
 end
 
@@ -112,6 +111,7 @@ m_grid('xtick',[-60 -50 -40 -30 -20 -10],...
        'linestyle','none',...
        'xaxislocation','bottom');
 saveas(gcf,'../reports/figures/bsose/xgrid.eps','epsc2');
+
 % some y grid stuff
 figure('color','w','visible','on');
 m_proj('miller','long',[x0 x1]-360,'lat',[-78 y1]);
