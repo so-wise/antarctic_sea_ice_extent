@@ -84,15 +84,19 @@ end
 xtlabels={'Jan','Feb','Mar','Apr','May','Jun',...
           'Jul','Aug','Sep','Oct','Nov','Dec'};
 
+%
+c1 = [27 158 119]./256;
+c2 = [117 112 179]./256;
+
 %% Initial plot
 lw = 2.0; 
 figure('color','w','position',[36 122 1099 645])
 hold on
-plot(doy, SIarea_2013, 'linewidth',3.0,'linestyle','-')
+plot(doy, SIarea_2013, 'linewidth',3.0,'linestyle','-','color',c1)
 plot(doy, SIarea_2014, 'linewidth',lw,'linestyle',':')
 plot(doy, SIarea_2015, 'linewidth',lw,'linestyle',':')
-plot(doy, SIarea_2016(1:365), 'linewidth',lw,'linestyle',':')
-plot(doy, SIarea_2017, 'linewidth',3.0,'linestyle','-')
+plot(doy, SIarea_2016(1:365), 'linewidth',3.0,'linestyle','-','color',c2)
+plot(doy, SIarea_2017, 'linewidth',lw,'linestyle',':')
 legend('2013','2014','2015','2016','2017','location','northwest');
 set(gca, 'fontsize',18,...
          'xlim',[1 365],...
